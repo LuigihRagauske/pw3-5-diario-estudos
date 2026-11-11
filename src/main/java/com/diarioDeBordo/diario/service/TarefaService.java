@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class TarefaService {
     private TarefaRepository tarefaRepository;
 
     public Tarefa salvarTarefa(Tarefa tarefa) {
-        long diasRestantes = ChronoUnit.DAYS.between(LocalDate.now(), tarefa.getDataEntrega());
+        long diasRestantes = ChronoUnit.DAYS.between(LocalDateTime.now(), tarefa.getDataEntrega());
+
+        if (tarefa.getDataEntrega() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Data de entrega é obrigatória");
+        }
 
         if (diasRestantes <= 2) {
             tarefa.setPrioridade(PrioridadeEnum.ALTA);
