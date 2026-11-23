@@ -1,1 +1,45 @@
-<p>lista-tarefas works!</p>
+<section class="container">
+  <header>
+    <h1>Diário de Bordo de Estudos</h1>
+    <button (click)="carregar()">Atualizar</button>
+  </header>
+
+  @if (carregando()) {
+  <p>Carregando...</p>
+  }
+
+  @if (erro()) {
+  <p class="erro">{{ erro() }}</p>
+  }
+
+  @if (!carregando() && !erro() && tarefas().length === 0) {
+  <p>Nenhuma tarefa cadastrada.</p>
+  }
+
+  @if (tarefas().length > 0) {
+  <table>
+    <thead>
+    <tr>
+      <th>Título</th>
+      <th>Matéria</th>
+      <th>Entrega</th>
+      <th>Prioridade</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (t of tarefas(); track t.id) {
+    <tr>
+      <td>{{ t.titulo }}</td>
+      <td>{{ t.materia }}</td>
+      <td>{{ t.dataEntrega | date: 'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ t.prioridade }}</td>
+      <td>{{ t.status }}</td>
+      <td></td>
+    </tr>
+    }
+    </tbody>
+  </table>
+  }
+</section>
