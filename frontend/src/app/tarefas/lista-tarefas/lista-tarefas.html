@@ -36,7 +36,13 @@
       <td>{{ t.dataEntrega | date: 'dd/MM/yyyy HH:mm' }}</td>
       <td>{{ t.prioridade }}</td>
       <td>{{ t.status }}</td>
-      <td></td>
+      <td>
+        <button
+          (click)="concluir(t)"
+          [disabled]="t.status === 'CONCLUIDA'">
+          Concluir
+        </button>
+      </td>
     </tr>
     }
     </tbody>

@@ -36,4 +36,15 @@ export class ListaTarefas implements OnInit {
             }
         });
     }
+
+    concluir(tarefa: Tarefa): void {
+        this.tarefaService.concluir(tarefa.id!).subscribe({
+            next: (atualizada) => {
+                this.tarefas.update(lista =>
+                    lista.map(t => t.id === atualizada.id ? atualizada : t)
+                );
+            },
+            error: () => this.erro.set('Não foi possível concluir a tarefa.')
+        });
+    }
 }

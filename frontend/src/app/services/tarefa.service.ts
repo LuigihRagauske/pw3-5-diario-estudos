@@ -32,6 +32,6 @@ export class TarefaService {
   }
 
   concluir(id: number): Observable<Tarefa> {
-    return this.http.patch<Tarefa>(`${this.apiUrl}/${id}/concluir`, null);
+      return this.http.patch<Tarefa>(`${this.apiUrl}/${id}/concluir`, {});
   }
 }
