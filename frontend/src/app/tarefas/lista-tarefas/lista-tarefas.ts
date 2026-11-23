@@ -47,4 +47,17 @@ export class ListaTarefas implements OnInit {
             error: () => this.erro.set('Não foi possível concluir a tarefa.')
         });
     }
+
+    excluir(tarefa: Tarefa): void {
+        if (!confirm(`Excluir a tarefa "${tarefa.titulo}"?`)) {
+            return;
+        }
+
+        this.tarefaService.deletar(tarefa.id!).subscribe({
+            next: () => {
+                this.tarefas.update(lista => lista.filter(t => t.id !== tarefa.id));
+            },
+            error: () => this.erro.set('Não foi possível excluir a tarefa.')
+        });
+    }
 }

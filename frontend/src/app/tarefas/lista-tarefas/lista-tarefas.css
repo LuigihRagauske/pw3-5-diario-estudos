@@ -25,3 +25,11 @@ th, td {
 .erro {
     color: #c0392b;
 }
+
+.excluir {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}

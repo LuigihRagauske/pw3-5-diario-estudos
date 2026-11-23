@@ -27,7 +27,7 @@ export class TarefaService {
     return this.http.put<Tarefa>(`${this.apiUrl}/${id}`, tarefa);
   }
 
-  excluir(id: number): Observable<void> {
+  deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
